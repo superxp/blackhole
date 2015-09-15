@@ -15,6 +15,9 @@ import java.util.List;
 public class PreAnswerHandler extends AbstractAnswerHandler implements InitializingBean {
 
 	private List<AnswerProvider> answerProviders;
+	
+	@Autowired
+	private WhiteAnswerProvider whiteAnswerProvider;
 
 	@Autowired
 	private CustomTempAnswerProvider customTempAnswerProvider;
@@ -45,6 +48,7 @@ public class PreAnswerHandler extends AbstractAnswerHandler implements Initializ
 
 	public void regitestProviders() {
 		answerProviders = new LinkedList<AnswerProvider>();
+		answerProviders.add(whiteAnswerProvider);
 		answerProviders.add(customTempAnswerProvider);
 		answerProviders.add(customAnswerPatternProvider);
         answerProviders.add(tempAnswerContainer);
